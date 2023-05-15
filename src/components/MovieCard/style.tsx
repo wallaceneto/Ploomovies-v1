@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
         backgroundColor: theme.cardColor,
         borderRadius: 8,
         padding: 12,
-        marginBottom: 16,
+        marginTop: 16,
         flexDirection: "row",
     },
     poster: {
