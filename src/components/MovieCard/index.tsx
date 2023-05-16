@@ -4,9 +4,10 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 
 import MovieModal from "../modals/MovieModal";
 import placeholder from "../../../assets/poster-placeholder.png";
-import styles from "./style";
 import theme from "../../global/styles/theme";
 import getPoster from "../../global/lib/getPoster";
+import Tag from "../Tag";
+import styles from "./style";
 import lib from "./lib";
 
 export default function MovieCard({ movie }: { movie: Movie }) {
@@ -24,9 +25,9 @@ export default function MovieCard({ movie }: { movie: Movie }) {
                     <Text style={styles.title}>{ movie.title }</Text>
                     <View style={styles.genres}>
                         <FlatList
-                            data={movie.genre_ids}
+                            data={movie.genre_ids.slice(0,2)}
                             keyExtractor={item => item.toString()}
-                            renderItem={({ item }) => <Text>{ item }</Text>}
+                            renderItem={({ item }) => <Tag genreId={item} />}
                             horizontal
                             scrollEnabled={false}
                         />
