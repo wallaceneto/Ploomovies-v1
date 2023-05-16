@@ -1,6 +1,7 @@
 import { Share, Alert } from "react-native";
 
 const fixDate = (date: string | undefined) => {
+    if (date == undefined) return "sem data"
     let newDateArray = [];
     newDateArray = date!.split("-");
     newDateArray.reverse();

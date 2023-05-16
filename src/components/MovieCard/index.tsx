@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import { View, Text, TouchableOpacity, Image, FlatList } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
@@ -10,9 +10,10 @@ import Tag from "../Tag";
 import styles from "./style";
 import lib from "./lib";
 
-export default function MovieCard({ movie }: { movie: Movie }) {
+function MovieCard({ movie }: { movie: Movie }) {
     const imageURL = getPoster(movie.poster_path);
     const [modalVisible, setModalVisible] = useState(false);
+    const [favorite, setFavorite] = useState(movie.isFavorite);
 
     return (
         <>
@@ -39,9 +40,9 @@ export default function MovieCard({ movie }: { movie: Movie }) {
                     </View>
                 </View>
                 <View style={styles.favButton}>
-                    <TouchableOpacity onPress={() => {}}>
+                    <TouchableOpacity onPress={() => setFavorite(!favorite)}>
                         <Ionicons
-                            name= {"heart-outline"}
+                            name= {favorite ? "heart" : "heart-outline"}
                             size={30}
                             color={theme.primaryColor}
                         />
@@ -57,3 +58,5 @@ export default function MovieCard({ movie }: { movie: Movie }) {
         </>
     );
 }
+
+export default memo(MovieCard);

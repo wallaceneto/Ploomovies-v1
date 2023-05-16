@@ -71,7 +71,7 @@ export default function MovieModal(props: MyProps) {
                                 <Text style={styles.subtitle}>{item.name}, </Text>
                             }
                             scrollEnabled={false}
-                            numColumns={3}
+                            numColumns={2}
                         />
                     </View>
                 </View>
