@@ -18,4 +18,9 @@ async function getActors(movieId: number) {
     return actors.data.cast;
 }
 
-export { getMovies, searchMovie, getActors }
+async function getGenres() {
+    const genres = await api.get(`/genre/movie/list?${api_key}&${language}`);
+    return genres.data.genres;
+}
+
+export { getMovies, searchMovie, getActors, getGenres }
