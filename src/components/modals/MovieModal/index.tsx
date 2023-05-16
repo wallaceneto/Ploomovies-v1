@@ -19,13 +19,14 @@ export default function MovieModal(props: MyProps) {
     const [actors, setActors] = useState<Actor[]>([]);
     
     useEffect(() => {
+        const fetchActors = async () => {
+            const cast = await getActors(props.movie.id);
+            setActors(cast.slice(0, 6));
+        };
+
         fetchActors();
     },[])
 
-    const fetchActors = async () => {
-        const cast = await getActors(props.movie.id);
-        setActors(cast.slice(0, 6));
-    };
     
     return (
         <Modal

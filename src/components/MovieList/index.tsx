@@ -37,20 +37,11 @@ export default function MovieList() {
         setLoading(false);
     }
 
-    const doSearch = (value: string) => {
-        setPage(1);
-        setMovies([]);
-        setSearchText(value);
-        if (value === "") {
-            fetchMovies();
-        } else {
-            fetchSearch();
-        }
-    }
-
     return(
         <View style={styles.container}>
-            <SearchInput textValue={searchText} setTextValue={doSearch} />
+            <SearchInput textValue={searchText} setTextValue={
+                (value: string) => lib.doSearch(value, setPage, setMovies, setSearchText, fetchMovies, fetchSearch)
+            } />
             <FlatList
                 data={movies}
                 keyExtractor={item => item.id.toString()}
@@ -60,6 +51,7 @@ export default function MovieList() {
                 ListFooterComponent={lib.loadingIndicator(loading)}
                 ListFooterComponentStyle={styles.loading}
                 ListEmptyComponent={!loading ? <EmptyResult /> : null}
+                showsVerticalScrollIndicator={false}
             />
         </View>
     );

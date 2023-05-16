@@ -3,6 +3,8 @@ import { View, TextInput, TouchableOpacity } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import styles from "./style";
+import lib from "./lib";
+import theme from "../../global/styles/theme";
 
 interface MyProps {
     textValue: string,
@@ -10,10 +12,6 @@ interface MyProps {
 }
 
 export default function SearchInput(props: MyProps) {
-
-    const cleanTextValue = () => {
-        props.setTextValue("");
-    }
 
     return (
         <View style={styles.container}>
@@ -26,10 +24,10 @@ export default function SearchInput(props: MyProps) {
                     style={styles.textInput}
                 />
                 {props.textValue === "" 
-                    ? <Ionicons name="search" size={24} color="#5A5A5A" />
+                    ? <Ionicons name="search" size={24} color={theme.searchIconColor} />
                     : 
-                    <TouchableOpacity onPress={() => cleanTextValue()}>
-                        <Ionicons name="close" size={24} color="#5A5A5A" />
+                    <TouchableOpacity onPress={() => lib.cleanTextValue(props.setTextValue)}>
+                        <Ionicons name="close" size={24} color={theme.searchIconColor} />
                     </TouchableOpacity>
                 }
             </View>

@@ -1,4 +1,5 @@
 import { ActivityIndicator } from "react-native";
+
 import theme from "../../global/styles/theme";
 
 const loadingIndicator = (isLoading: boolean) => {
@@ -7,4 +8,22 @@ const loadingIndicator = (isLoading: boolean) => {
     ) : null;
 }
 
-export default { loadingIndicator };
+const doSearch = (
+    value: string, 
+    setPage: Function, 
+    setMovies: Function, 
+    setSearchText: Function,
+    fetchMovies: Function,
+    fetchSearch: Function,
+) => {
+    setPage(1);
+    setMovies([]);
+    setSearchText(value);
+    if (value === "") {
+        fetchMovies();
+    } else {
+        fetchSearch();
+    }
+}
+
+export default { loadingIndicator, doSearch };
